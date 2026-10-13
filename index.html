@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -77,7 +78,6 @@ button {
   flex-direction: column;
 }
 
-/* مساحة البانر أعلى اللعبة */
 .ad-banner {
   flex: 0 0 50px;
   width: 100%;
@@ -290,8 +290,6 @@ button {
   display: none !important;
 }
 
-/* شاشة الفوز */
-
 #winnerScreen {
   position: fixed;
   inset: 0;
@@ -345,9 +343,7 @@ button {
 }
 
 @keyframes revealWinner {
-  to {
-    opacity: 1;
-  }
+  to { opacity: 1; }
 }
 
 .winner-label {
@@ -415,8 +411,8 @@ button {
 
 <main class="app">
 
-  <!-- البانر الإعلاني أعلى اللعبة -->
-  <div class="ad-banner" aria-label="إعلان">
+  <!-- البانر العلوي -->
+  <div class="ad-banner" aria-label="الإعلان العلوي">
     <div class="ad-banner-inner">
       <script>
         var atOptions = {
@@ -466,6 +462,23 @@ button {
 
     </div>
   </section>
+
+  <!-- البانر السفلي: أضف هنا كود إعلان آخر بمفتاح مختلف -->
+  <div class="ad-banner ad-banner-bottom" aria-label="الإعلان السفلي">
+    <div class="ad-banner-inner">
+         <script>
+         atOptions = {
+         'key' : '44d5e7eb75efe1020b6e40a23f4ade51',
+         'format' : 'iframe',
+         'height' : 50,
+         'width' : 320,
+         'params' : {}
+         };
+         </script>
+         <script src="https://www.highrevenueformat.com/44d5e7eb75efe1020b6e40a23f4ade51/invoke.js"></script>
+    </div>
+  </div>
+
 </main>
 
 <div id="winnerScreen" aria-live="polite">
@@ -516,9 +529,6 @@ button {
   let roundToken = 0;
   let audioCtx = null;
   let soundEnabled = true;
-
-  /* يفتح الـ Smartlink مرة واحدة فقط طوال زيارة الصفحة الحالية */
-  let smartlinkOpenedThisVisit = false;
 
   function initAudio() {
     try {
@@ -934,21 +944,11 @@ button {
   }
 
   playAgainBtn.addEventListener("click", () => {
-    if (!smartlinkOpenedThisVisit) {
-      smartlinkOpenedThisVisit = true;
-
-      const adWindow = window.open(
-        SMARTLINK_URL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      if (adWindow) {
-        try {
-          adWindow.opener = null;
-        } catch (_) {}
-      }
-    }
+    window.open(
+      SMARTLINK_URL,
+      "_blank",
+      "noopener,noreferrer"
+    );
 
     resetGame();
   });
