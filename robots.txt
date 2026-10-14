@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://finger-picker.github.io/Picker/sitemap.xml
